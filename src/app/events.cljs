@@ -8,8 +8,13 @@
 (re-frame/reg-event-db ::initialize-db
                        (fn-traced [db]
                                   (let [db (db/init)]
-                                    {:db db})))
+                                    db)))
 
 (re-frame/reg-event-db ::navigate-to
-                       (fn-traced [db [_event active-page]]
+                       (fn-traced [db [_ active-page]]
                                   (assoc db :active-page active-page)))
+
+(re-frame/reg-event-db ::increment-counter
+                       (fn-traced [db]
+                                  (assoc db :counter (inc (get db :counter)))))
+

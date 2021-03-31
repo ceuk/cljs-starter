@@ -3,5 +3,9 @@
 
 (re-frame/reg-sub
  ::active-page
- (fn [db]
-   (:active-page db)))
+ #(get % :active-page))
+
+(re-frame/reg-sub
+ ::counter
+ #(get % :counter))
+

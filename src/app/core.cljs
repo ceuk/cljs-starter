@@ -1,14 +1,29 @@
 (ns app.core
-  "This namespace contains your application and is the entrypoint for 'yarn start'."
-  (:require [reagent.core :as r]
-            [app.hello :refer [hello]]))
+  (:require [reagent.core :as reagent]
+            [re-frame.core :as re-frame]
+            [app.config :as config]
+            [app.views :as views]
+            [app.events :as events]
+            [app.routes :as routes]
+            [router.core :as router]))
 
-(defn ^:dev/after-load render
-  "Render the toplevel component for this app."
-  []
-  (r/render [hello] (.getElementById js/document "app")))
+(defn dev-setup! []
+  (when config/debug?
+    (enable-console-print!)
+    (println "dev mode")))
 
-(defn ^:export main
-  "Run application startup logic."
-  []
-  (render))
+(defn mount-root! []
+  (let [mount-div (.getElementById js/document "app")]
+    (re-frame/clear-subscription-cache!)
+    (reagent/render [views/render] mount-div)))
+
+(defn ^:export main! []
+  (routes/app-routes)
+  (re-frame/dispatch-sync [::events/initialize-db])
+  (dev-setup!)
+  (router/init!)
+  (mount-root!))
+
+(defn reload! []
+  (router/reload!)
+  (reagent/force-update-all))

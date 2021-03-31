@@ -13,7 +13,7 @@
 ; Set jsdom to mock a dom environment for node testing.
 (jsdom-global)
 
-(defn ^:export main
+(defn ^:export main!
   "Start the devcards UI."
   []
   ; Add a special class to the body to signal we're in devcards mode.

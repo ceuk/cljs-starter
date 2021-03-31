@@ -1,7 +1,7 @@
-(ns app.hello
+(ns app.components.hello.view
   (:require [re-frame.core :refer [subscribe dispatch]]
-            [app.subs :as subs]
-            [app.events :as events]
+            [app.state.counter.subs :as subs]
+            [app.state.counter.events :as events]
             [reagent.core :as r]))
 
 (defn click-counter [click-count]

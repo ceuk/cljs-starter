@@ -2,8 +2,7 @@
   (:require [reagent.core :as reagent]
             [re-frame.core :as re-frame]
             [app.config :as config]
-            [app.views :as views]
-            [app.events :as events]
+            [app.state.system.events :as events]
             [app.routes :as routes]
             [router.core :as router]))
 
@@ -15,7 +14,7 @@
 (defn mount-root! []
   (let [mount-div (.getElementById js/document "app")]
     (re-frame/clear-subscription-cache!)
-    (reagent/render [views/render] mount-div)))
+    (reagent/render [routes/render] mount-div)))
 
 (defn ^:export main! []
   (routes/app-routes)

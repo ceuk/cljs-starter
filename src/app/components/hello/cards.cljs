@@ -1,4 +1,4 @@
-(ns app.hello-cards
+(ns app.components.hello.cards
   (:require [reagent.core :as r]
             [devcards.core :as dc :refer [defcard deftest]]
             [cljs.test :include-macros true :refer [is]]

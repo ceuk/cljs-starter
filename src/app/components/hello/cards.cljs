@@ -3,7 +3,7 @@
             [devcards.core :as dc :refer [defcard deftest]]
             [cljs.test :include-macros true :refer [is]]
             ["@testing-library/react" :refer [render cleanup fireEvent]]
-            [app.hello :refer [click-counter hello]]))
+            [app.components.hello.view :refer [click-counter hello]]))
 
 (defn testing-container
   "The container that should be used to render testing-library react components.
